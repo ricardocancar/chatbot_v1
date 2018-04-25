@@ -57,7 +57,7 @@ def mensaje(bot,update):
    insertarMensaje(update.message)
 
 def main():
-  updater = Updater('586738436:AAGrPatgodFlEzSCvg53L9rpOCGU67ACk6s')
+  updater = Updater('')
   
   updater.start_polling()
   updater.dispatcher.add_handler(CommandHandler('start',start))
