@@ -6,6 +6,7 @@
 ##---------------------------------------------------------------------------------------------------------------------------------------------------------------------
 import pymongo
 import logging
+from variables import
 from datetime import datetime # Para insertar la fecha actual
 import time #Librería con funcionalidades manipular y dar formato a fechas y horas
 
@@ -16,8 +17,8 @@ import time #Librería con funcionalidades manipular y dar formato a fechas y ho
 ## Variables
 ##---------------------------------------------------------------------------------------------------------------------------------------------------------------------
 try:
-    urlMongoDB = 'localhost' #URL_de_MongoDB
-    port = 27017
+    urlMongoDB =host #URL_de_MongoDB
+    port = port
 except Exception as e:
     print (time.strftime("%c"), "- Error al cargar la URL del MongoDB: ", type(e), e)
 

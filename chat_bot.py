@@ -3,6 +3,7 @@
 import texto
 import ayuntament
 import logging 
+from variables import *
 from DAO import*
 from telegram import  (ReplyKeyboardMarkup, ReplyKeyboardRemove, User, Bot,InlineKeyboardButton, InlineKeyboardMarkup)
 from telegram.ext import (Updater, CommandHandler, MessageHandler, ConversationHandler, Filters,RegexHandler,CallbackQueryHandler)
@@ -57,7 +58,11 @@ def mensaje(bot,update):
    insertarMensaje(update.message)
 
 def main():
+<<<<<<< HEAD
+  updater = Updater(Token)
+=======
   updater = Updater('')
+>>>>>>> origin/master
   
   updater.start_polling()
   updater.dispatcher.add_handler(CommandHandler('start',start))
