@@ -7,18 +7,19 @@
 import requests
 import json
 import logging
+
 from Salarios import *
 from texto import *
 from ayuntament import *
-#from variables import *
+from variables import *
 
 
 ##---------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ## Variables
 ##---------------------------------------------------------------------------------------------------------------------------------------------------------------------
 try:
-    apiAccess = 'b895aef28b814f6fb3c795a264d09b5c'
-    apiDeveloperAccess = '4106b2509662420c802f62322319a1a9'
+    apiAccess = apiaccess
+    apiDeveloperAccess = apiDeveloperaccess
 
 except Exception as e:
     print(time.strftime("%c"), "- Error al cargar tokens de api.ai: ", type(e), e)
