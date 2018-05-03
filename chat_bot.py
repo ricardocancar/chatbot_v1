@@ -3,7 +3,8 @@
 import texto
 import ayuntament
 import logging 
-from variables import *
+from apiai import *
+from variables import*
 from DAO import*
 from telegram import  (ReplyKeyboardMarkup, ReplyKeyboardRemove, User, Bot,InlineKeyboardButton, InlineKeyboardMarkup)
 from telegram.ext import (Updater, CommandHandler, MessageHandler, ConversationHandler, Filters,RegexHandler,CallbackQueryHandler)
@@ -28,13 +29,13 @@ def start(bot,update):
     actualizarUsuario(update.message.chat_id)
   leng = get_idioma(update.message.chat_id)
 
-  bot.sendMessage(chat_id = update.message.chat_id, text= texto.greetings('comandoStart',leng))
+  bot.sendMessage(chat_id = update.message.chat_id, text= texto.respuestas_bot('comandoStart',leng))
   update.message.reply_text('Idioma:', reply_markup=tecladoIdioma)
   
 def idioma(bot,update):
   leng = get_idioma(update.message.chat_id)
 
-  bot.sendMessage(chat_id = update.message.chat_id, text= texto.greetings('comandoIdioma',leng))
+  bot.sendMessage(chat_id = update.message.chat_id, text= texto.respuestas_bot('comandoIdioma',leng))
   update.message.reply_text('Idioma:', reply_markup=tecladoIdioma)
 
 def button(bot,update):
@@ -43,26 +44,24 @@ def button(bot,update):
     resultado = True
     if resultado == True:
         actualizarIdioma(query.message.chat.id,query.data)
-        bot.answerCallbackQuery(callback_query_id= query.id, text=texto.greetings('pulsarBotonIdioma',query.data))
-        bot.sendMessage(chat_id =query.message.chat_id, text=texto.greetings('respuestaCambioIdioma',query.data))
+        bot.answerCallbackQuery(callback_query_id= query.id, text=texto.respuestas_bot('pulsarBotonIdioma',query.data))
+        bot.sendMessage(chat_id =query.message.chat_id, text=texto.respuestas_bot('respuestaCambioIdioma',query.data))
     else:
-        bot.sendMessage(chat_id= query.message.chat_id, text=texto.greetings('respuestaCambioIdiomaError',query.data))
+        bot.sendMessage(chat_id= query.message.chat_id, text=texto.respuestas_bot('respuestaCambioIdiomaError',query.data))
 
 def mensaje(bot,update):
    if not existe_Usuario(update.message.chat_id):
       insertarNuevoUsuario(update.message.chat_id)
    else:
       actualizarUsuario(update.message.chat_id)
-
-   bot.sendMessage(chat_id=update.message.chat_id, text='aqui va la respuesta del bot')
-   insertarMensaje(update.message)
+   get_idioma(update.message.chat_id)
+   bot.sendMessage(chat_id=update.message.chat_id, text=query(update.message.text, update.message.chat_id,get_idioma(update.message.chat_id)))
+   insertarMensaje(update.message,query(update.message.text, update.message.chat_id,get_idioma(update.message.chat_id)))
 
 def main():
-<<<<<<< HEAD
+
   updater = Updater(Token)
-=======
-  updater = Updater('')
->>>>>>> origin/master
+
   
   updater.start_polling()
   updater.dispatcher.add_handler(CommandHandler('start',start))

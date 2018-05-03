@@ -1,0 +1,8 @@
+Comandos
+start - Permite registra usuario y seleccionar idioma.
+idioma - permite seleccionar idioma.
+
+
+descripcion bot infoecoVLC
+
+infoecoVLC es un asistente virtual que facilita el acceso los datos abiertos generados por el ayuntamiento de valencia, y se los entrega al ciudadano común. La idea es que en un futuro los ciudadanos de valencia usen este bot y responda a las dudas que ellos tengas en cuanto a los gasto de presupuesto en que se invierte o como se obtienen el presupuesto. Estamos en los inicios del proyecto así que por ahora responde a 2 preguntas.  Sueldos de altos cargos e impuestos pagados por cada barrio.
