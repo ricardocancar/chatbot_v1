@@ -1,2 +1,5 @@
 *.pyc
 variables.py
+#varios
+chat_bot.log
+descripcion_bot.txt
