@@ -12,7 +12,7 @@ from Salarios import *
 from texto import *
 from ayuntament import *
 from variables import *
-
+from impuesto_barrio import *
 
 ##---------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ## Variables
@@ -22,7 +22,7 @@ try:
     apiDeveloperAccess = apiDeveloperaccess
 
 except Exception as e:
-    print(time.strftime("%c"), "- Error al cargar tokens de api.ai: ", type(e), e)
+    logging.exception("- Error al cargar tokens de api.ai: ")
 
 #baseURL = "https://api.api.ai/v1/"
 baseURL = "https://api.dialogflow.com/v1/"
@@ -43,6 +43,7 @@ headers = {
 ##---------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 def sendQuery(texto, chat_id, idioma):
+    ### send post to Dialog flow V1 with the user menssage
     contexto = [{
         "name": "usuario",
         "parameters": { "idioma": idioma},
@@ -67,7 +68,7 @@ def query(mensaje,idUser, leng):
   res = sendQuery(mensaje,idUser, leng)
   #print(res)
   if res.status_code == 200:
-    
+    #if we get a answer from Dialogflow, and get the intent to select the answer that we want
     res = res.json()
     #['result']['resolvedQuery'])
     intent = res['result']['metadata']['intentName']
@@ -93,6 +94,12 @@ def query(mensaje,idUser, leng):
            return res['result']['speech']
          else:
            return respuestas_bot('error.Salario',leng)
+
+    if intent == 'barrio':
+        barrio, impuesto, year = res['result']['parameters'].items()
+        key = res['result']['action']
+        return impuestos_barrio(barrio[1],impuesto[1],year[1],key,leng)
+        
   else:
      return respuesta_bot('error.connection',leng)
      

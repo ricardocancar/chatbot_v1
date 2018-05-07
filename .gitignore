@@ -1,5 +1,7 @@
 *.pyc
 variables.py
+prueba.py
 #varios
 chat_bot.log
 descripcion_bot.txt
+preguntas_Dialogflow.csv

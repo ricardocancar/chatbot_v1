@@ -22,12 +22,14 @@ dicVal = {
 # busquedaRespuesta.py /////////////////////////////////////////////////////////
     "resErrorRespApiai": 'El servei està caigut ara mateix, torna a intentar-ho més tard.',
     "resErrorRespWH": "Ops! Les dades no estan disponibles en aquests moments. Torna a manar la teua pregunta en uns pocs minuts, per favor.",
+    "resErrorano": "no tenim els {} de l'{} any. de moment només comptem amb els impost de l'any 2016",
     "resComplemento.Saludo": "Bon dia!",
     "resinput.unknown": "Huy! Aquesta pregunta no la tenia contemplada.",
     "res.Salario": ["{} guanya {}€ de retribució anual bruta (sense antiguitat) pel seu càrrec de , {}.",
                    "un {} guanya {}€ de retribució anual bruta (sense antiguitat)"],
+    "res.Impuesto":"al barri {} pagament en total {} en {} l'any {} ",
     "error.Salario": "¿Revisaste que aquest ben escrit el nom?",
-                    #"un {} guanya {} € de retribució anual bruta (sense antiguitat)"],
+                    
 # botonesTeclados.py ///////////////////////////////////////////////////////////
     "pulsarBotonIdioma": "Guardat en memòria.",
     "respuestaCambioIdioma": "A partir d'ara les comunicacions seran en valencià.",
@@ -47,10 +49,12 @@ dicCast = {
 # busquedaRespuesta.py /////////////////////////////////////////////////////////
     "resErrorRespApiai": 'El servicio esta caído ahora mismo, vuelve a intentarlo más tarde.',
     "resErrorRespWH": "¡Ops! Los datos no están disponibles en estos momentos. Vuelve a mandar tu pregunta en unos pocos minutos, por favor.",
+    "resErrorano": "no tenemos los impuesto del {} año. de momento solo contamos con los impuesto del año 2016",
     "resComplemento.Saludo": "¡Buenos días!",
     "resinput.unknown": "¡Huy! Esa pregunta no la tenía contemplada.",
     "res.Salario": ["{} gana {}€ de retribución anual bruta (sin antigüedad) por su cargo de {}.",
                     "un {} gana {}€ de retribución anual bruta (sin antigüedad)"],
+    "res.Impuesto":"el barrio {} pago en total {} en {} el año {}",
 # botonesTeclados.py ///////////////////////////////////////////////////////////
     "pulsarBotonIdioma": 'Guardado en memoria.',
     "respuestaCambioIdioma": 'A partir de ahora las comunicaciones serán en castellano.',
@@ -62,7 +66,7 @@ dicCast = {
 ## Función
 ##---------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-def respuestas_bot(key,idioma):
+def respuesta_bot(key,idioma):
     if idioma == 'Val':
         text = dicVal[key]
 

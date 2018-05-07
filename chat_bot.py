@@ -22,7 +22,8 @@ tecladoIdioma = InlineKeyboardMarkup(inline_keyboard=[
 
 
 def start(bot,update):
-  ### le pasamos la id de telegram para registrar usuario nuevo. 
+  ### le pasamos la id de telegram para registrar usuario nuevo.
+  ## if the user exists we update the last time access to actual time, if not we add the user to the DB
   if not existe_Usuario(update.message.chat_id):
     insertarNuevoUsuario(update.message.chat_id)
   else:
@@ -39,6 +40,7 @@ def idioma(bot,update):
   update.message.reply_text('Idioma:', reply_markup=tecladoIdioma)
 
 def button(bot,update):
+    ## this function allow the user change the language between spanish and valenciano 
     query = update.callback_query
 
     resultado = True
@@ -50,6 +52,8 @@ def button(bot,update):
         bot.sendMessage(chat_id= query.message.chat_id, text=texto.respuestas_bot('respuestaCambioIdiomaError',query.data))
 
 def mensaje(bot,update):
+   ## if the user send a message to the bot, the program call this function to answer the user question.
+   ### query is a function from apiai librery this function manage all the answer.
    if not existe_Usuario(update.message.chat_id):
       insertarNuevoUsuario(update.message.chat_id)
    else:
