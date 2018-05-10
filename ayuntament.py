@@ -10,14 +10,7 @@ import datetime
 
 gastos = ["GASTOS DE PERSONAL", "GASTOS CORRIENTES EN BIENES Y SERVICIOS","GASTOS FINANCIEROS","TRANSFERENCIAS CORRIENTES","INVERSIONES REALES", "TRANSFERENCIAS DE CAPITAL", "ACTIVOS FINANCIEROS", "PASIVOS FINANCIEROS","FONDO DE CONTINGENCIA Y OTROS IMPREVISTOS"]
 
-def addComa(num):
-  #need to be string to add coma
-  i = num.index('.')
-  num = num.replace(num[i], ',')
-  while i > 3:
-     i =i - 3
-     num = num[:i] + '.' + num[i:]
-  return num
+
 
 
 def presupuesto_general(geo,dat,leng):
@@ -37,6 +30,7 @@ def presupuesto_general(geo,dat,leng):
          if s[0].isdigit():
             
            year = s[0]
+
       if int(year) < 2011:
          if leng == 'Cast':
            return 'solo tenemos presupuesto desde el 2011'

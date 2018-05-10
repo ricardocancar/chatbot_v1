@@ -139,3 +139,25 @@ def actualizarRespuesta(message_id, chat_id, respuesta, accion):
         dbMensajes.update_one(query,update)
     except Exception as e:
         logging.exception("- Error en Actualizar respuesta: ") 
+
+
+def addComa(num):
+  #need to be string to add coma
+  try:
+     i = num.index('.')
+     num = num.replace(num[i], ',')
+  except:
+     i = len(num)
+  
+  while i > 3:
+     i =i - 3
+     num = num[:i] + '.' + num[i:]
+  return num
+
+
+
+if __name__ == '__main__':
+  print(addComa('552222225'))
+
+
+

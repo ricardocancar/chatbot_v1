@@ -72,12 +72,13 @@ def query(mensaje,idUser, leng):
     res = res.json()
     #['result']['resolvedQuery'])
     intent = res['result']['metadata']['intentName']
-    if intent == 'inicio':
-       geo , date, presu = res['result']['parameters'].items()
+    if intent == 'Presupuesto':
+       #geo , date, presu = res['result']['parameters'].items()
        
-       return presupuesto_general(geo[1], date[1],leng)
+       #return presupuesto_general(geo[1], date[1],leng)
+       return res['result']['speech']
     if intent == 'Welcome':
-       return respuestas_bot(res['result']['action'], leng)
+       return respuesta_bot(res['result']['action'], leng)
 
     if intent in ['Default Fallback Intent','Despedida','bot','comiat']:
        return res['result']['speech']
@@ -85,9 +86,11 @@ def query(mensaje,idUser, leng):
     if intent == 'salario':
        nombre,cargo = res['result']['parameters'].items()
        key = res['result']['action']
+       #print(nombre,cargo)
        if nombre[1] !="":
          return salarios(nombre[1],key, leng)
        elif cargo[1] !="":
+         
          return cargos(cargo[1],key,leng)
        else:
          if leng == 'Cast':
@@ -95,8 +98,8 @@ def query(mensaje,idUser, leng):
          else:
            return respuestas_bot('error.Salario',leng)
 
-    if intent == 'barrio':
-        barrio, impuesto, year = res['result']['parameters'].items()
+    if intent == 'Impuestos':
+        year, barrio, impuesto = res['result']['parameters'].items()
         key = res['result']['action']
         return impuestos_barrio(barrio[1],impuesto[1],year[1],key,leng)
         

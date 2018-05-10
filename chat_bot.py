@@ -58,9 +58,10 @@ def mensaje(bot,update):
       insertarNuevoUsuario(update.message.chat_id)
    else:
       actualizarUsuario(update.message.chat_id)
+   text =query(update.message.text, update.message.chat_id,get_idioma(update.message.chat_id))
    get_idioma(update.message.chat_id)
-   bot.sendMessage(chat_id=update.message.chat_id, text=query(update.message.text, update.message.chat_id,get_idioma(update.message.chat_id)))
-   insertarMensaje(update.message,query(update.message.text, update.message.chat_id,get_idioma(update.message.chat_id)))
+   bot.sendMessage(chat_id=update.message.chat_id, text=text)
+   insertarMensaje(update.message,text)
 
 def main():
 

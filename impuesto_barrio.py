@@ -3,6 +3,7 @@
 import logging
 from DAO import *
 from pymongo import MongoClient
+from DAO import addComa
 from texto import *
 from bson.son import SON
 import re
@@ -52,14 +53,22 @@ def sumaImpuesto(impuesto):
 
 
 def impuestos_barrio(barrio,impuesto,anio,key,leng):
-  ##this function return the sum of taxes pay in each neighbor  
+  ##this function return the sum of taxes pay in each neighborhood 
   regx = re.compile("^{}".format(barrio), re.IGNORECASE)
   dbBarrios = db.barrio_impuesto
+  if impuesto == '':
+     impuesto ='impuestos'
   if anio == '':
     anio = 2016
-  if len(list(dbBarrios.find({"anio":int(anio)}))) > 0: ### check if we have data for that year
+  else:
+    for s in anio.split(): 
+      s=s.split('-')
+      if s[0].isdigit():
+        anio = int(s[0])
+  
+  if len(list(dbBarrios.find({"anio": anio}))) > 0: ### check if we have data for that year
     pipeline = [
-        {"$match": {"sinonimos": regx, "anio": anio}},
+        {"$match": {"barrio_key": regx, "anio": anio}},
         {"$sort": SON([("anio", -1)])},          ##SON function is use to maintain the sort in python dictionary
         {"$limit": 1},
         {"$project": {
@@ -77,6 +86,7 @@ def impuestos_barrio(barrio,impuesto,anio,key,leng):
   
 
     try:
+      ## add taxes that must be added in the pipeline
       pipeline[3]["$project"]["valor"]["$sum"].extend(suma)
     except Exception as e:
       logging.exception("- Error al añadir suma a pipeline: ")
@@ -85,10 +95,10 @@ def impuestos_barrio(barrio,impuesto,anio,key,leng):
       respuesta = list(dbBarrios.aggregate(pipeline))
     except Exception as e:
       logging.exception("- Error conexión PagoBarrios: ")
-  
-    return respuesta_bot(key,leng).format(barrio,respuesta[0]['valor'],impuesto,anio)
+    
+    return respuesta_bot(key,leng).format(barrio,addComa(format(respuesta[0]['valor'],"0.2f")),impuesto,anio)
   else:
     return respuesta_bot('resErrorano',leng).format(anio)
 
 if __name__ =='__main__':
-   print(impuestos_barrio('La Bega Baixa','IBI',2016,'res.Impuesto','Cast'))
+   print(impuestos_barrio('benimaclet','IBI','2016','res.Impuesto','Cast'))
