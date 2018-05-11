@@ -16,8 +16,8 @@ dicVal = {
     "comandoIdioma": "En quin idioma vols que em comunique amb tu a partir d'ara?",
     "usuarioNoGuardado": "Hola sembla que hi ha hagut un error i no tinc emmagatzemat que idioma vols que em comunique amb tu. M'ho podries recordar?",
     "errorNoTexto": "Perdona però no entenc aquest tipus de missatges.",
-    "errorNoResult":"no hem trobat el nom a la base de dades revisa que estigui ben escrit",
-    "errorManyResult":"Hi ha més d'un alt càrrec amb aquest nom, si pots col·loca el nom complet per respoderte.",
+    "errorNoResult":"no hem trobat el nom a la base de dades, revisa que estigui ben escrit",
+    "errorManyResult":"Hi ha més d'un alt càrrec amb aquest nom, si pots col·loca el nom complet per respondre't.",
     "error.Connection":"Disculpes tenim problemes per trobar les respostes.",
 # busquedaRespuesta.py /////////////////////////////////////////////////////////
     "resErrorRespApiai": 'El servei està caigut ara mateix, torna a intentar-ho més tard.',
@@ -25,9 +25,9 @@ dicVal = {
     "resErrorano": "no tenim els {} de l'{} any. de moment només comptem amb els impost de l'any 2016",
     "resComplemento.Saludo": "Bon dia!",
     "resinput.unknown": "Huy! Aquesta pregunta no la tenia contemplada.",
-    "res.Salario": ["{} guanya {}€ de retribució anual bruta (sense antiguitat) pel seu càrrec de , {}.",
+    "res.Salario": ["{} guanya {}€ de retribució anual bruta (sense antiguitat) pel seu càrrec de {}.",
                    "un {} guanya {}€ de retribució anual bruta (sense antiguitat)"],
-    "res.Impuesto":"al barri {} pagament en total {} en {} l'any {} ",
+    "res.Impuesto":"al barri {} va pagar en total {} l'any {}.",
     "error.Salario": "¿Revisaste que aquest ben escrit el nom?",
                     
 # botonesTeclados.py ///////////////////////////////////////////////////////////

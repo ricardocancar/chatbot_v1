@@ -68,7 +68,7 @@ def impuestos_barrio(barrio,impuesto,anio,key,leng):
   
   if len(list(dbBarrios.find({"anio": anio}))) > 0: ### check if we have data for that year
     pipeline = [
-        {"$match": {"barrio_key": regx, "anio": anio}},
+        {"$match": {"sinonimos": regx, "anio": anio}}, #barrio_key
         {"$sort": SON([("anio", -1)])},          ##SON function is use to maintain the sort in python dictionary
         {"$limit": 1},
         {"$project": {
@@ -93,10 +93,11 @@ def impuestos_barrio(barrio,impuesto,anio,key,leng):
   
     try:
       respuesta = list(dbBarrios.aggregate(pipeline))
+      return respuesta_bot(key,leng).format(barrio,addComa(format(respuesta[0]['valor'],"0.2f")),impuesto,anio)
     except Exception as e:
       logging.exception("- Error conexión PagoBarrios: ")
+      return 'disculpa no podemos darte una respuesta'
     
-    return respuesta_bot(key,leng).format(barrio,addComa(format(respuesta[0]['valor'],"0.2f")),impuesto,anio)
   else:
     return respuesta_bot('resErrorano',leng).format(anio)
 
