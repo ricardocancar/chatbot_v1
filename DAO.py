@@ -143,6 +143,7 @@ def actualizarRespuesta(message_id, chat_id, respuesta, accion):
 
 def addComa(num):
   #need to be string to add coma
+  num = str(num)
   try:
      i = num.index('.')
      num = num.replace(num[i], ',')

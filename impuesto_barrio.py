@@ -96,7 +96,7 @@ def impuestos_barrio(barrio,impuesto,anio,key,leng):
       return respuesta_bot(key,leng).format(barrio,addComa(format(respuesta[0]['valor'],"0.2f")),impuesto,anio)
     except Exception as e:
       logging.exception("- Error conexión PagoBarrios: ")
-      return 'disculpa no podemos darte una respuesta'
+      return respuesta_bot('errorImpRes',leng)
     
   else:
     return respuesta_bot('resErrorano',leng).format(anio)
