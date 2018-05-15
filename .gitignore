@@ -1,8 +1,11 @@
 *.pyc
+__pycache__
 variables.py
 prueba.py
 unitest.py
 #varios
 chat_bot.log
 descripcion_bot.txt
-preguntas_Dialogflow.csv
+preguntas_Dialogfliow.csv
+.travis.yml
+
