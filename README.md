@@ -6,7 +6,7 @@ Modulo responsable de gestionar todos los mensajes que se reciben de Telegram. S
 
 ## Descripción
 
-![Diseño de comunicacion](https://github.com/ricardocancar/chatbot_v1/blob/master/imagen/infoecoVLC.png)
+![Diseño de comunicacion](https://github.com/ricardocancar/chatbot_v1/blob/master/imagen/Diagrama_M3-ChatBot.png)
 
 
 ## Guía de uso
