@@ -1,5 +1,4 @@
 *.pyc
-__pycache__
 variables.py
 prueba.py
 unitest.py
