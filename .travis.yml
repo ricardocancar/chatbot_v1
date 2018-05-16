@@ -7,6 +7,7 @@ python:
 services:
  - mongodb
 install:
+  - pip install unittest
   - pip install -r requirements.txt
 
 script:  pytest
