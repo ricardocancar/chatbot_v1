@@ -2,7 +2,7 @@
 #   http://lint.travis-ci.org/
 language: python 
 python: 
- - "stable"
+ - "3.6"
 
 services:
  - mongodb
