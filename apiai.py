@@ -72,36 +72,45 @@ def query(mensaje,idUser, leng):
     res = res.json()
     #['result']['resolvedQuery'])
     intent = res['result']['metadata']['intentName']
-    if intent == 'Presupuesto':
-       #geo , date, presu = res['result']['parameters'].items()
+    if intent == 'Presupuesto': ## pregunta guardada para proxima iteracion
+       geo = res['result']['parameters']['geo-city']
+       date= res['result']['parameters']['date-period']
        
-       #return presupuesto_general(geo[1], date[1],leng)
-       return res['result']['speech']
+       
+       return 1, presupuesto_general(geo, date,leng)
+       
     if intent == 'Welcome':
-       return respuesta_bot(res['result']['action'], leng)
+       return 1, respuesta_bot(res['result']['action'], leng)
 
-    if intent in ['Default Fallback Intent','Despedida','bot','comiat']:
-       return res['result']['speech']
+    if intent in ['Despedida','bot','comiat']:
+       return 1, res['result']['speech']
+
+    if intent in ['Default Fallback Intent']:
+
+       return 0 , respuesta_bot("preg.desconocida", leng) 
 
     if intent == 'salario':
-       nombre,cargo = res['result']['parameters'].items()
+       cargo = res['result']['parameters']['cargo']
+       nombre = res['result']['parameters']['nombre']
        key = res['result']['action']
        #print(nombre,cargo)
-       if nombre[1] !="":
-         return salarios(nombre[1],key, leng)
-       elif cargo[1] !="":
+       if nombre !="":
+         return 1, salarios(nombre,key, leng)
+       elif cargo !="":
          
-         return cargos(cargo[1],key,leng)
+         return 1, cargos(cargo,key,leng)
        else:
          if leng == 'Cast':
-           return res['result']['speech']
+           return 0, res['result']['speech']
          else:
-           return respuestas_bot('error.Salario',leng)
+           return 0, respuestas_bot('error.Salario',leng)
 
     if intent == 'Impuestos':
-        year, barrio, impuesto = res['result']['parameters'].items()
+        year = res['result']['parameters']['date-period']
+        barrio = res['result']['parameters']['barrios']
+        impuesto = res['result']['parameters']['Tax']
         key = res['result']['action']
-        return impuestos_barrio(barrio[1],impuesto[1],year[1],key,leng)
+        return impuestos_barrio(barrio,impuesto,year,key,leng)
         
   else:
      return respuesta_bot('error.connection',leng)
