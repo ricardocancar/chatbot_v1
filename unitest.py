@@ -1,7 +1,7 @@
 #!/user/bin/python
 import unittest
 import DAO
-import apiai
+#import apiai
 import texto
 from pymongo import MongoClient
 
