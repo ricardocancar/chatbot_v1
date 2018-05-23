@@ -6,11 +6,12 @@
 ##---------------------------------------------------------------------------------------------------------------------------------------------------------------------
 import pymongo
 import logging
-from variables import *
+#from variables import *
 from datetime import datetime # Para insertar la fecha actual
 import time #Librería con funcionalidades manipular y dar formato a fechas y horas
-
-
+host = 'localhost'
+port = 27017
+ 
 #from variables import *
 
 ##---------------------------------------------------------------------------------------------------------------------------------------------------------------------
